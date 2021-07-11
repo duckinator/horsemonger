@@ -1,0 +1,7 @@
+*~
+horsemonger
+*.o
+
+# Generated files
+horsemonger.cxx
+horsemonger.h
