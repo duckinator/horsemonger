@@ -7,12 +7,12 @@ class UserInterface {open
   Function {make_window()} {open
   } {
     Fl_Window {} {open
-      xywh {559 304 1020 450} type Double hide resizable size_range {415 330 0 0}
+      xywh {571 433 1020 450} type Double resizable size_range {415 330 0 0} visible
     } {
       Fl_Scroll {} {open
         xywh {0 1 1020 450} resizable
       } {
-        Fl_Pack {} {open selected
+        Fl_Pack {} {open
           xywh {0 1 1020 450}
         } {
           Fl_Text_Editor name {
@@ -21,27 +21,27 @@ class UserInterface {open
           }
           Fl_Text_Editor summary {
             label Summary
-            xywh {10 80 370 25} align 5
+            xywh {10 80 370 28} align 5
           }
           Fl_Input {} {
             label Text
-            xywh {10 132 368 74} align 5
+            xywh {10 132 370 74} align 5
           }
           Fl_Text_Editor datasheet {
             label {Datasheet URL}
-            xywh {10 233 370 23} align 5
+            xywh {10 233 370 28} align 5
           }
           Fl_Text_Editor details {
             label {Details URL}
-            xywh {10 286 370 25} align 5
+            xywh {10 286 370 28} align 5
           }
           Fl_Input_Choice package {
             label {Package Style} open
-            xywh {10 338 370 25} align 5
+            xywh {10 338 370 28} align 5
           } {}
           Fl_Text_Editor tags {
             label {Tags (comma separated)}
-            xywh {10 390 370 25} align 5
+            xywh {10 390 370 28} align 5
           }
           Fl_Table pins {
             label {Pin Details} open
@@ -51,4 +51,12 @@ class UserInterface {open
       }
     }
   }
+}
+
+Function {main(int argc, char **argv)} {open selected return_type int
+} {
+  code {auto ui = UserInterface();
+auto window = ui.make_window();
+window->show(argc, argv);
+return Fl::run();} {}
 }
