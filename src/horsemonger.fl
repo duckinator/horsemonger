@@ -6,18 +6,18 @@ class UserInterface {open
 } {
   Function {make_window()} {open
   } {
-    Fl_Window {} {
+    Fl_Window window {
       label {Horse Monger} open
       xywh {494 406 1005 630} type Double resizable size_range {415 330 0 0} visible
     } {
-      Fl_Scroll {} {open
-        xywh {-640 -215 2235 890} labeltype NO_LABEL resizable
+      Fl_Scroll scroll {open
+        private xywh {-640 -215 2235 890} labeltype NO_LABEL resizable
       } {
         Fl_Pack hbox {open
           xywh {0 20 1020 615} type HORIZONTAL
           code0 {hbox->spacing(30);}
         } {
-          Fl_Pack vbox_main {open selected
+          Fl_Pack vbox_main {open
             xywh {0 25 550 600}
             code0 {vbox_main->spacing(30);}
           } {
