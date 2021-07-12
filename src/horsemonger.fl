@@ -29,6 +29,19 @@ class UserInterface {open
               label Summary
               xywh {10 77 415 25} align 5
             }
+            Fl_Value_Input num_pins {
+              label {Number of Pins} selected
+              xywh {25 50 25 25} align 5
+            }
+            Fl_Pack package_style {
+              label {Package Style} open
+              xywh {10 281 415 25} type HORIZONTAL align 5
+            } {
+              Fl_Round_Button pkg_dip {
+                label DIP
+                xywh {10 281 50 23} type Radio down_box ROUND_DOWN_BOX
+              }
+            }
             Fl_Input text {
               label Text
               xywh {10 129 415 25} type Multiline align 5
@@ -44,15 +57,6 @@ class UserInterface {open
             Fl_Input tags {
               label {Tags (comma separated)}
               xywh {10 325 415 25} align 5
-            }
-            Fl_Pack package_style {
-              label {Package Style} open
-              xywh {10 281 415 25} type HORIZONTAL align 5
-            } {
-              Fl_Round_Button pkg_dip {
-                label DIP selected
-                xywh {10 281 50 23} type Radio down_box ROUND_DOWN_BOX
-              }
             }
           }
           Fl_Pack vbox_pins {open
