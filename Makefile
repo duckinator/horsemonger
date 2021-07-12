@@ -1,10 +1,10 @@
 all: horsemonger
 
-horsemonger.cxx horsemonger.h:
-	fluid -c -o horsemonger.cxx -h horsemonger.h horsemonger.fl
+gen/horsemonger.cxx gen/horsemonger.h: src/horsemonger.fl
+	fluid -c -o gen/horsemonger.cxx -h gen/horsemonger.h src/horsemonger.fl
 
-horsemonger: horsemonger.cxx horsemonger.h
-	clang++ -o horsemonger -L /usr/local/lib -lfltk -I /usr/local/include horsemonger.cxx
+horsemonger: gen/horsemonger.cxx gen/horsemonger.h src/main.cxx
+	clang++ -o horsemonger -L /usr/local/lib -lfltk -I /usr/local/include $@
 
 clean:
 	rm -f horsemonger horsemonger.cxx horsemonger.h

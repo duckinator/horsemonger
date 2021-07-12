@@ -50,19 +50,11 @@ class UserInterface {open
               xywh {10 325 415 25} align 5
             }
           }
-          Fl_Pack vbox_pins {open selected
+          Fl_Pack vbox_pins {open
             xywh {435 20 570 608}
           } {}
         }
       }
     }
   }
-}
-
-Function {main(int argc, char **argv)} {open return_type int
-} {
-  code {auto ui = UserInterface();
-auto window = ui.make_window();
-window->show(argc, argv);
-return Fl::run();} {}
 }
