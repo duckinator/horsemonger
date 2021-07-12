@@ -18,7 +18,7 @@ class UserInterface {open
           code0 {hbox->spacing(30);}
         } {
           Fl_Pack vbox_main {open
-            xywh {0 25 435 600}
+            xywh {0 25 550 600}
             code0 {vbox_main->spacing(30);}
           } {
             Fl_Input name {
@@ -41,13 +41,18 @@ class UserInterface {open
               label {Details URL}
               xywh {10 233 415 25} align 5
             }
-            Fl_Input_Choice package_style {
-              label {Package Style} open
-              xywh {10 285 415 25} align 5
-            } {}
             Fl_Input tags {
               label {Tags (comma separated)}
               xywh {10 325 415 25} align 5
+            }
+            Fl_Pack package_style {
+              label {Package Style} open
+              xywh {10 281 415 25} type HORIZONTAL align 5
+            } {
+              Fl_Round_Button pkg_dip {
+                label DIP selected
+                xywh {10 281 50 23} type Radio down_box ROUND_DOWN_BOX
+              }
             }
           }
           Fl_Pack vbox_pins {open
