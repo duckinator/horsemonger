@@ -14,7 +14,7 @@ class UserInterface {open
         xywh {-640 -215 2235 890} labeltype NO_LABEL resizable
       } {
         Fl_Pack hbox {open
-          xywh {0 23 1020 612} type HORIZONTAL
+          xywh {0 20 1020 615} type HORIZONTAL
           code0 {hbox->spacing(30);}
         } {
           Fl_Pack vbox_main {open
@@ -50,14 +50,9 @@ class UserInterface {open
               xywh {10 325 415 25} align 5
             }
           }
-          Fl_Pack vbox_pins {open
-            xywh {435 25 570 603}
-          } {
-            Fl_Table pins {
-              label Pins open selected
-              xywh {455 25 550 603} align 5
-            } {}
-          }
+          Fl_Pack vbox_pins {open selected
+            xywh {435 20 570 608}
+          } {}
         }
       }
     }
