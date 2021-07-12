@@ -6,54 +6,65 @@ class UserInterface {open
 } {
   Function {make_window()} {open
   } {
-    Fl_Window {} {open
-      xywh {571 433 1020 450} type Double resizable size_range {415 330 0 0} visible
+    Fl_Window {} {
+      label {Horse Monger} open selected
+      xywh {494 406 1005 630} type Double resizable size_range {415 330 0 0} visible
     } {
       Fl_Scroll {} {open
-        xywh {0 1 1020 450} resizable
+        xywh {-640 -215 2235 890} labeltype NO_LABEL resizable
       } {
-        Fl_Pack {} {open
-          xywh {0 1 1020 450}
+        Fl_Pack hbox {open
+          xywh {0 23 1020 612} type HORIZONTAL
+          code0 {hbox->spacing(30);}
         } {
-          Fl_Text_Editor name {
-            label {Component Name}
-            xywh {10 28 370 28} align 5
+          Fl_Pack vbox_main {open
+            xywh {0 25 435 600}
+            code0 {vbox_main->spacing(30);}
+          } {
+            Fl_Input name {
+              label {Component Name}
+              xywh {10 27 415 25} align 5
+            }
+            Fl_Input summary {
+              label Summary
+              xywh {10 77 415 25} align 5
+            }
+            Fl_Input text {
+              label Text
+              xywh {10 129 415 25} type Multiline align 5
+            }
+            Fl_Input datasheet {
+              label {Datasheet URL}
+              xywh {10 181 415 25} align 5
+            }
+            Fl_Input details {
+              label {Details URL}
+              xywh {10 233 415 25} align 5
+            }
+            Fl_Input_Choice package_style {
+              label {Package Style} open
+              xywh {10 285 415 25} align 5
+            } {}
+            Fl_Input tags {
+              label {Tags (comma separated)}
+              xywh {10 325 415 25} align 5
+            }
           }
-          Fl_Text_Editor summary {
-            label Summary
-            xywh {10 80 370 28} align 5
+          Fl_Pack vbox_pins {open
+            xywh {435 25 570 603}
+          } {
+            Fl_Table {} {
+              label Pins open
+              xywh {455 25 550 603} align 5
+            } {}
           }
-          Fl_Input {} {
-            label Text
-            xywh {10 132 370 74} align 5
-          }
-          Fl_Text_Editor datasheet {
-            label {Datasheet URL}
-            xywh {10 233 370 28} align 5
-          }
-          Fl_Text_Editor details {
-            label {Details URL}
-            xywh {10 286 370 28} align 5
-          }
-          Fl_Input_Choice package {
-            label {Package Style} open
-            xywh {10 338 370 28} align 5
-          } {}
-          Fl_Text_Editor tags {
-            label {Tags (comma separated)}
-            xywh {10 390 370 28} align 5
-          }
-          Fl_Table pins {
-            label {Pin Details} open
-            xywh {405 28 615 387} align 5
-          } {}
         }
       }
     }
   }
 }
 
-Function {main(int argc, char **argv)} {open selected return_type int
+Function {main(int argc, char **argv)} {open return_type int
 } {
   code {auto ui = UserInterface();
 auto window = ui.make_window();
