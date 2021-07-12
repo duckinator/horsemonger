@@ -7,7 +7,7 @@ class UserInterface {open
   Function {make_window()} {open
   } {
     Fl_Window {} {
-      label {Horse Monger} open selected
+      label {Horse Monger} open
       xywh {494 406 1005 630} type Double resizable size_range {415 330 0 0} visible
     } {
       Fl_Scroll {} {open
@@ -53,8 +53,8 @@ class UserInterface {open
           Fl_Pack vbox_pins {open
             xywh {435 25 570 603}
           } {
-            Fl_Table {} {
-              label Pins open
+            Fl_Table pins {
+              label Pins open selected
               xywh {455 25 550 603} align 5
             } {}
           }
