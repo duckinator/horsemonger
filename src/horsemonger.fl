@@ -26,37 +26,37 @@ class UserInterface {open
               xywh {10 27 415 25} align 5
             }
             Fl_Input summary {
-              label Summary selected
+              label Summary
               xywh {10 77 415 25} align 5
             }
             Fl_Input text {
-              label Text
-              xywh {10 129 415 25} type Multiline align 5
+              label Text selected
+              xywh {10 129 415 125} type Multiline align 5
             }
             Fl_Input datasheet {
               label {Datasheet URL}
-              xywh {10 181 415 25} align 5
+              xywh {10 285 415 25} align 5
             }
             Fl_Input details {
               label {Details URL}
-              xywh {10 233 415 25} align 5
+              xywh {10 337 415 25} align 5
             }
             Fl_Pack package_style {
               label {Package Style} open
-              xywh {10 281 415 25} type HORIZONTAL align 5
+              xywh {10 385 415 25} type HORIZONTAL align 5
             } {
               Fl_Round_Button pkg_dip {
                 label DIP
-                xywh {10 281 50 23} type Radio down_box ROUND_DOWN_BOX
+                xywh {10 385 50 23} type Radio down_box ROUND_DOWN_BOX
               }
             }
             Fl_Value_Input num_pins {
               label {Number of Pins}
-              xywh {10 331 110 25} align 5
+              xywh {10 435 110 25} align 5
             }
             Fl_Input tags {
               label {Tags (comma separated)}
-              xywh {10 383 415 25} align 5
+              xywh {10 487 415 25} align 5
             }
           }
           Fl_Pack vbox_pins {open
