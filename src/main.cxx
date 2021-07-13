@@ -1,26 +1,11 @@
 #include <stdio.h>
 #include <string>
 #include "radio_button.h"
+#include "component.h"
 #include "../gen/horsemonger.h"
-
-enum ComponentType {
-    UNKNOWN = 0,
-    DIP = 1,
-};
 
 static void package_style_choice_cb(Fl_Widget *w, void *userdata);
 static void num_pins_cb(Fl_Widget *w, void *userdata);
-
-class Component {
-private:
-    Fl_Pack *vbox_pins;
-
-public:
-    ComponentType type = UNKNOWN;
-    int num_pins;
-
-    void setup(UserInterface *ui);
-};
 
 static Component component = Component();
 
