@@ -7,14 +7,14 @@ class UserInterface {open
   Function {make_window()} {open
   } {
     Fl_Window window {
-      label {Horse Monger} open
-      xywh {494 406 1005 630} type Double resizable size_range {415 330 0 0} visible
+      label {Horse Monger} open selected
+      xywh {494 218 1005 650} type Double resizable size_range {1005 650 0 0} visible
     } {
       Fl_Scroll scroll {open
         private xywh {-640 -215 2235 890} labeltype NO_LABEL resizable
       } {
         Fl_Pack hbox {open
-          xywh {0 20 1020 615} type HORIZONTAL
+          xywh {0 20 1005 615} type HORIZONTAL
           code0 {hbox->spacing(30);}
         } {
           Fl_Pack vbox_main {open
@@ -25,38 +25,55 @@ class UserInterface {open
               label {Component Name}
               xywh {10 27 415 25} align 5
             }
+            Fl_Input slug {
+              label Slug
+              xywh {10 70 415 25} align 5
+            }
             Fl_Input summary {
               label Summary
-              xywh {10 77 415 25} align 5
+              xywh {10 112 415 25} align 5
             }
             Fl_Input text {
-              label Text selected
-              xywh {10 129 415 125} type Multiline align 5
+              label Text
+              xywh {10 164 415 125} type Multiline align 5
             }
             Fl_Input datasheet {
               label {Datasheet URL}
-              xywh {10 285 415 25} align 5
+              xywh {10 320 415 25} align 5
             }
             Fl_Input details {
               label {Details URL}
-              xywh {10 337 415 25} align 5
+              xywh {10 372 415 25} align 5
             }
             Fl_Pack package_style {
               label {Package Style} open
-              xywh {10 385 415 25} type HORIZONTAL align 5
+              xywh {10 420 415 25} type HORIZONTAL align 5
             } {
               Fl_Round_Button pkg_dip {
                 label DIP
-                xywh {10 385 50 23} type Radio down_box ROUND_DOWN_BOX
+                xywh {10 420 50 23} type Radio down_box ROUND_DOWN_BOX
               }
             }
             Fl_Value_Input num_pins {
               label {Number of Pins}
-              xywh {10 435 110 25} align 5
+              xywh {10 470 110 25} align 5
             }
             Fl_Input tags {
               label {Tags (comma separated)}
-              xywh {10 487 415 25} align 5
+              xywh {10 522 415 25} align 5
+            }
+            Fl_Pack hbox_buttons {open
+              xywh {10 555 415 25} type HORIZONTAL
+              code0 {hbox_buttons->spacing(10);}
+            } {
+              Fl_Button load_btn {
+                label {&Load}
+                xywh {10 555 80 25}
+              }
+              Fl_Button save_btn {
+                label {&Save}
+                xywh {100 555 80 25}
+              }
             }
           }
           Fl_Pack vbox_pins {open
