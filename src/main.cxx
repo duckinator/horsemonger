@@ -1,36 +1,34 @@
 #include <stdio.h>
 #include <string>
+#include "radio_button.h"
 #include "../gen/horsemonger.h"
+
+enum ComponentType {
+    UNKNOWN = 0,
+    DIP = 1,
+};
+
+static void package_style_choice_cb(Fl_Widget *w, void *userdata);
+static void num_pins_cb(Fl_Widget *w, void *userdata);
 
 class Component {
 private:
-    enum ComponentType {
-        UNKNOWN = 0,
-        DIP = 1,
-    };
-
     Fl_Pack *vbox_pins;
-    ComponentType type = UNKNOWN;
-
-    static void package_style_choice_cb(Fl_Widget *w, void *userdata);
-    static ComponentType name_to_type(const char *name);
 
 public:
+    ComponentType type = UNKNOWN;
     int num_pins;
 
-    Component(Fl_Pack *package_style, Fl_Pack *vbox_pins);
+    void setup(UserInterface *ui);
 };
 
-Component::ComponentType Component::name_to_type(const char *name) {
-    if (strncmp("DIP", name, 4) == 0) {
-        return Component::ComponentType::DIP;
-    } else {
-        return Component::UNKNOWN;
-    }
-}
+static Component component = Component();
 
-Component::Component(Fl_Pack *package_style, Fl_Pack *vbox_pins) {
-    this->vbox_pins = vbox_pins;
+void Component::setup(UserInterface *ui) {
+    Fl_Pack *package_style = ui->package_style;
+    this->vbox_pins = ui->vbox_pins;
+
+    ui->num_pins->callback(num_pins_cb, 0);
 
     int num_children = package_style->children();
     for (int i = 0; i < num_children; i++) {
@@ -42,31 +40,36 @@ Component::Component(Fl_Pack *package_style, Fl_Pack *vbox_pins) {
     first_child->set();
 }
 
-void Component::package_style_choice_cb(Fl_Widget *w, void *userdata) {
+ComponentType package_name_to_type(const char *name) {
+    if (strncmp("DIP", name, 4) == 0) {
+        return DIP;
+    } else {
+        return UNKNOWN;
+    }
+}
+
+
+void num_pins_cb(Fl_Widget *w, void *userdata) {
+    Fl_Value_Input *input = (Fl_Value_Input*)w;
+
+    component.num_pins = input->value();
+    printf("component.num_pins = %i\n", component.num_pins);
+}
+
+void package_style_choice_cb(Fl_Widget *w, void *userdata) {
     Fl_Round_Button *choice = (Fl_Round_Button*)w;
     (void)userdata; // unused
 
-    auto parent = choice->parent();
+    radio_button_select(choice);
 
-    int num_children = parent->children();
-    for (int i = 0; i < num_children; i++) {
-        Fl_Round_Button *child = (Fl_Round_Button*)parent->child(i);
-        if (child != choice) {
-            child->clear();
-        }
-    }
-
-    printf("name = %s (%i)\n", choice->label(), name_to_type(choice->label()));
-
-    //vbox_pins->begin();
-
-    //vbox_pins->end();
+    component.type = package_name_to_type(choice->label());
+    printf("component.type = %i\n", component.type);
 }
 
 int main(int argc, char **argv) {
     auto ui = UserInterface();
     auto window = ui.make_window();
-    auto component = Component(ui.package_style, ui.vbox_pins);
+    component.setup(&ui);
     window->show(argc, argv);
     return Fl::run();
 }
