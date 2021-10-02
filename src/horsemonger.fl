@@ -7,7 +7,7 @@ class UserInterface {open
   Function {make_window()} {open
   } {
     Fl_Window window {
-      label {Horse Monger} open selected
+      label {Horse Monger} open
       xywh {494 218 1005 650} type Double resizable size_range {1005 650 0 0} visible
     } {
       Fl_Scroll scroll {open
@@ -17,7 +17,7 @@ class UserInterface {open
           xywh {0 20 1005 615} type HORIZONTAL
           code0 {hbox->spacing(30);}
         } {
-          Fl_Pack vbox_main {open
+          Fl_Pack vbox_main {open selected
             xywh {0 25 430 603}
             code0 {vbox_main->spacing(30);}
           } {

@@ -1,20 +1,17 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "gen/horsemonger.h"
+#include <nlohmann/json.hpp>
 
-enum ComponentType {
-    UNKNOWN = 0,
-    DIP = 1,
-};
+#include "gen/horsemonger.h"
 
 class Component {
 private:
     Fl_Pack *vbox_pins;
 
 public:
-    ComponentType type = UNKNOWN;
-    int num_pins;
+    char type[10] = "UNKNOWN";
+    int num_pins = -1;
 
     void setup(UserInterface *ui);
 };

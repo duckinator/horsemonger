@@ -2,12 +2,13 @@
 #include <string>
 #include "radio_button.h"
 #include "component.h"
-#include "../gen/horsemonger.h"
 
 static void package_style_choice_cb(Fl_Widget *w, void *userdata);
 static void num_pins_cb(Fl_Widget *w, void *userdata);
 
 static Component component = Component();
+
+static Fl_Input *slug = NULL;
 
 void Component::setup(UserInterface *ui) {
     Fl_Pack *package_style = ui->package_style;
@@ -23,21 +24,17 @@ void Component::setup(UserInterface *ui) {
 
     Fl_Round_Button *first_child = (Fl_Round_Button*)package_style->child(0);
     first_child->set();
-}
 
-ComponentType package_name_to_type(const char *name) {
-    if (strncmp("DIP", name, 4) == 0) {
-        return DIP;
-    } else {
-        return UNKNOWN;
-    }
+    slug = ui->slug;
 }
-
 
 void num_pins_cb(Fl_Widget *w, void *userdata) {
     Fl_Value_Input *input = (Fl_Value_Input*)w;
 
-    component.num_pins = input->value();
+    component.num_pins = (int)input->value();
+    // Since we have to cast it to an int, set the value to what we cast
+    // it to, so it's at least consistent.
+    input->value(component.num_pins);
     printf("component.num_pins = %i\n", component.num_pins);
 }
 
@@ -47,8 +44,8 @@ void package_style_choice_cb(Fl_Widget *w, void *userdata) {
 
     radio_button_select(choice);
 
-    component.type = package_name_to_type(choice->label());
-    printf("component.type = %i\n", component.type);
+    strncpy(component.type, choice->label(), sizeof(component.type));
+    printf("component.type = %s\n", component.type);
 }
 
 int main(int argc, char **argv) {
